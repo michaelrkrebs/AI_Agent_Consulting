@@ -77,20 +77,20 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-slate-900 border-b border-cyan-400">
+      <header className="bg-black border-b-4 border-red-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+          <div className="flex justify-between items-center py-8">
             <div className="flex items-center">
-              <div className="text-2xl font-light text-white tracking-wider">
-                <span className="text-cyan-400 font-extralight">AI AGENT</span>
+              <div className="text-3xl font-nasa text-white">
+                <span className="text-red-500">AI AGENT</span>
                 <br />
                 <span className="text-white">CONSULTING</span>
               </div>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#catalog" className="text-gray-300 hover:text-cyan-400 font-light tracking-wide">CATALOG</a>
-              <a href="#team" className="text-gray-300 hover:text-cyan-400 font-light tracking-wide">TEAM</a>
-              <a href="#consultation" className="bg-cyan-500 text-slate-900 px-6 py-2 font-medium hover:bg-cyan-400 tracking-wide">
+            <nav className="hidden md:flex space-x-12">
+              <a href="#catalog" className="text-white hover:text-red-500 font-nasa text-sm">CATALOG</a>
+              <a href="#team" className="text-white hover:text-red-500 font-nasa text-sm">TEAM</a>
+              <a href="#consultation" className="bg-red-600 text-white px-8 py-3 font-nasa text-sm hover:bg-red-700 border border-red-600">
                 REQUEST CONSULTATION
               </a>
             </nav>
@@ -99,31 +99,31 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <section className="bg-white nasa-grid">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-extralight mb-6 leading-tight tracking-wider">
+            <h1 className="text-6xl md:text-8xl font-nasa text-black mb-8 leading-none">
               AI AGENTS
               <br />
-              <span className="text-cyan-400 font-light">FOR SMB LEADERS</span>
+              <span className="text-red-600">FOR SMB LEADERS</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-black font-light">
               The smartest CEOs are using AI to get ahead, but most have no clue how to actually do it.
-              We've analyzed <strong className="text-cyan-400">2,046 enterprise workflows</strong> to build
+              We've analyzed <strong className="font-nasa-mono text-red-600">2,013 enterprise workflows</strong> to build
               ready-to-deploy AI agents that save time and drive results.
             </p>
-            <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-              <div className="bg-slate-800/50 border border-cyan-400/30 px-8 py-4 rounded backdrop-blur">
-                <div className="text-3xl font-light text-cyan-400">2,046</div>
-                <div className="text-sm tracking-wider text-gray-300">WORKFLOWS ANALYZED</div>
+            <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto">
+              <div className="bg-black border-4 border-red-600 px-6 py-8">
+                <div className="text-4xl font-nasa-mono text-red-600 mb-2">2,013</div>
+                <div className="text-xs font-nasa text-white">WORKFLOWS ANALYZED</div>
               </div>
-              <div className="bg-slate-800/50 border border-cyan-400/30 px-8 py-4 rounded backdrop-blur">
-                <div className="text-3xl font-light text-cyan-400">98.4%</div>
-                <div className="text-sm tracking-wider text-gray-300">SUCCESS RATE</div>
+              <div className="bg-black border-4 border-red-600 px-6 py-8">
+                <div className="text-4xl font-nasa-mono text-red-600 mb-2">98.4%</div>
+                <div className="text-xs font-nasa text-white">SUCCESS RATE</div>
               </div>
-              <div className="bg-slate-800/50 border border-cyan-400/30 px-8 py-4 rounded backdrop-blur">
-                <div className="text-3xl font-light text-cyan-400">$156K</div>
-                <div className="text-sm tracking-wider text-gray-300">AVG ANNUAL ROI</div>
+              <div className="bg-black border-4 border-red-600 px-6 py-8">
+                <div className="text-4xl font-nasa-mono text-red-600 mb-2">$156K</div>
+                <div className="text-xs font-nasa text-white">AVG ANNUAL ROI</div>
               </div>
             </div>
           </div>
@@ -296,28 +296,14 @@ export default function HomePage() {
               ) : workflows.length > 0 ? (
                 <div className="divide-y divide-slate-200">
                   {workflows.map((workflow, index) => (
-                    <div key={workflow.id || index} className="p-6 hover:bg-slate-50">
+                    <div key={workflow.id || index} className="p-6 border-b border-slate-200 hover:bg-slate-50">
                       <div className="flex justify-between items-start mb-3">
-                        <h3 className="text-lg font-medium text-slate-900">{workflow.name}</h3>
-                        <span className="bg-cyan-100 text-cyan-800 px-2 py-1 rounded text-sm font-medium">
+                        <h3 className="text-lg font-nasa-mono uppercase tracking-wider text-slate-900 font-medium">{workflow.name}</h3>
+                        <span className="nasa-badge text-cyan-400 px-3 py-1 text-xs font-nasa-mono tracking-widest">
                           {workflow.category}
                         </span>
                       </div>
-                      <p className="text-slate-600 mb-4 font-light">{workflow.summary}</p>
-                      <div className="grid grid-cols-3 gap-4 text-sm">
-                        <div>
-                          <span className="text-slate-500">Time Saved:</span>
-                          <div className="font-medium text-slate-900">{workflow.timeSavings} hrs/week</div>
-                        </div>
-                        <div>
-                          <span className="text-slate-500">Annual ROI:</span>
-                          <div className="font-medium text-cyan-600">${workflow.annualROI?.toLocaleString()}</div>
-                        </div>
-                        <div>
-                          <span className="text-slate-500">Complexity:</span>
-                          <div className="font-medium text-slate-900">{workflow.complexity}</div>
-                        </div>
-                      </div>
+                      <p className="text-slate-600 font-light leading-relaxed">{workflow.summary}</p>
                     </div>
                   ))}
                 </div>
