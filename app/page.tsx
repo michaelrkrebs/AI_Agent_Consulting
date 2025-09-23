@@ -73,7 +73,7 @@ export default function HomePage() {
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-gray-900">
-                The American AI Agent Company
+                Gold Star Workflows
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
@@ -169,9 +169,7 @@ export default function HomePage() {
                 Michael Krebs
               </h3>
               <p className="text-gray-600 leading-relaxed text-center">
-                Former automation architect at Fortune 500 companies. Built workflow optimization systems
-                that saved over $50M annually across enterprise clients. Specialized in n8n automation
-                platforms and AI integration strategies for mid-market businesses.
+                Michael Krebs was the first bizops hire at a unicorn where he built the operational infrastructure for a billion-dollar business, later serving as Business Strategy Lead at Blue Origin's innovation lab. A serial entrepreneur who sold his first company in college, he currently runs DataFresh, a profitable business that operates autonomously through AI agents. His expertise spans business operations, business intelligence, and revenue operations, with a proven track record of building systems that drive measurable business impact. Michael specializes in designing business infrastructure and architecture specifically optimized for AI agent deployment, understanding how to structure processes, data flows, and decision frameworks that enable autonomous operations.
               </p>
             </div>
 
@@ -184,9 +182,7 @@ export default function HomePage() {
                 Thomas Baker
               </h3>
               <p className="text-gray-600 leading-relaxed text-center">
-                15+ years designing business process automation for SMB growth companies. Expert in
-                translating complex operational requirements into streamlined AI workflows. Previously
-                led digital transformation initiatives for 200+ mid-market organizations.
+                Thomas Baker is an Executive Fellow and Instructor at Harvard Business School teaching AI strategy to senior executives, and former CTO of Applied General Intelligence where he architected the Arx agent and AGI pipelines that outperformed top LLMs on industry benchmarks. He previously served as Engineering Lead for Advanced Concepts at Blue Origin, integrating generative AI into orbital mission planning, and led experimental vehicle development at LTA Research & Exploration. Currently, he shapes secure, decentralized AI architectures at MIT's Decentralized AI Lab while serving as AI Fellow at C10 Labs and Technical Fellow at Type One Ventures. With deep technical roots from Silicon Valley and experience spanning SpaceX Hyperloop to autonomous systems, Thomas mentors startups through Techstars and contributes to the Future of Defense Task Force.
               </p>
             </div>
           </div>
@@ -227,22 +223,6 @@ export default function HomePage() {
               </button>
             </div>
 
-            {/* Category Filter */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    selectedCategory === category
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
 
             {/* Search Results */}
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
@@ -377,13 +357,13 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="text-2xl font-bold text-gray-900 mb-4">
-              The American AI Agent Company
+              Gold Star Workflows
             </div>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               We build AI agents that automate business processes and improve operations.
             </p>
             <div className="text-sm text-gray-500">
-              © 2025 The American AI Agent Company
+              © 2025 Gold Star Workflows
             </div>
           </div>
         </div>
