@@ -1,11 +1,48 @@
 'use client'
 
-import { useState } from 'react'
-import { Search, ArrowRight, CheckCircle, Star, TrendingUp, Users, DollarSign } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Search, ArrowRight, CheckCircle, Star, TrendingUp, Users, DollarSign, Loader2 } from 'lucide-react'
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [workflows, setWorkflows] = useState<any[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasSearched, setHasSearched] = useState(false)
+
+  // Fetch workflows from our API
+  const searchWorkflows = async () => {
+    if (!searchQuery.trim()) return
+
+    setIsLoading(true)
+    setHasSearched(true)
+
+    try {
+      const params = new URLSearchParams({
+        q: searchQuery,
+        category: selectedCategory,
+        limit: '10'
+      })
+
+      const response = await fetch(`/api/workflows?${params}`)
+      const data = await response.json()
+
+      if (data.workflows) {
+        setWorkflows(data.workflows)
+      }
+    } catch (error) {
+      console.error('Search failed:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Search on Enter key
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      searchWorkflows()
+    }
+  }
 
   // Sample top performing agents from your database
   const featuredAgents = [
@@ -43,20 +80,21 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b-2 border-red-600">
+      <header className="bg-slate-900 border-b border-cyan-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900">
-                <span className="text-red-600">THE AMERICAN</span>
+              <div className="text-2xl font-light text-white tracking-wider">
+                <span className="text-cyan-400 font-extralight">AI AGENT</span>
                 <br />
-                <span className="text-blue-900">AI AGENT COMPANY</span>
+                <span className="text-white">CONSULTING</span>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#catalog" className="text-gray-700 hover:text-red-600 font-medium">Catalog</a>
-              <a href="#consultation" className="bg-red-600 text-white px-6 py-2 rounded font-medium hover:bg-red-700">
-                Request Consultation
+              <a href="#catalog" className="text-gray-300 hover:text-cyan-400 font-light tracking-wide">CATALOG</a>
+              <a href="#team" className="text-gray-300 hover:text-cyan-400 font-light tracking-wide">TEAM</a>
+              <a href="#consultation" className="bg-cyan-500 text-slate-900 px-6 py-2 font-medium hover:bg-cyan-400 tracking-wide">
+                REQUEST CONSULTATION
               </a>
             </nav>
           </div>
@@ -64,30 +102,31 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 via-red-800 to-blue-900 text-white">
+      <section className="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              AMERICAN
+            <h1 className="text-5xl md:text-7xl font-extralight mb-6 leading-tight tracking-wider">
+              AI AGENTS
               <br />
-              <span className="text-red-300">AI DOMINANCE</span>
+              <span className="text-cyan-400 font-light">FOR SMB LEADERS</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed">
-              We've analyzed <strong>2,046 enterprise workflows</strong> and built the definitive catalog of AI agents
-              that American businesses need to compete and win in the global marketplace.
+            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-light">
+              The smartest CEOs are using AI to get ahead, but most have no clue how to actually do it.
+              We've analyzed <strong className="text-cyan-400">2,046 enterprise workflows</strong> to build
+              ready-to-deploy AI agents that save time and drive results.
             </p>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-              <div className="bg-white/10 px-8 py-4 rounded-lg backdrop-blur">
-                <div className="text-3xl font-bold text-red-300">2,046</div>
-                <div className="text-sm uppercase tracking-wide">Workflows Analyzed</div>
+              <div className="bg-slate-800/50 border border-cyan-400/30 px-8 py-4 rounded backdrop-blur">
+                <div className="text-3xl font-light text-cyan-400">2,046</div>
+                <div className="text-sm tracking-wider text-gray-300">WORKFLOWS ANALYZED</div>
               </div>
-              <div className="bg-white/10 px-8 py-4 rounded-lg backdrop-blur">
-                <div className="text-3xl font-bold text-red-300">98.4%</div>
-                <div className="text-sm uppercase tracking-wide">Success Rate</div>
+              <div className="bg-slate-800/50 border border-cyan-400/30 px-8 py-4 rounded backdrop-blur">
+                <div className="text-3xl font-light text-cyan-400">98.4%</div>
+                <div className="text-sm tracking-wider text-gray-300">SUCCESS RATE</div>
               </div>
-              <div className="bg-white/10 px-8 py-4 rounded-lg backdrop-blur">
-                <div className="text-3xl font-bold text-red-300">$2.1M</div>
-                <div className="text-sm uppercase tracking-wide">Avg ROI Generated</div>
+              <div className="bg-slate-800/50 border border-cyan-400/30 px-8 py-4 rounded backdrop-blur">
+                <div className="text-3xl font-light text-cyan-400">$156K</div>
+                <div className="text-sm tracking-wider text-gray-300">AVG ANNUAL ROI</div>
               </div>
             </div>
           </div>
@@ -149,30 +188,86 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Catalog Search */}
-      <section id="catalog" className="py-20 bg-gray-100">
+      {/* Team Section */}
+      <section id="team" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              THE COMPLETE CATALOG
+            <h2 className="text-4xl font-light text-slate-900 mb-4 tracking-wider">
+              MISSION SPECIALISTS
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Search our comprehensive database of AI agents. If we don't have what you need,
-              we'll build it from scratch using proven enterprise methodologies.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+              Former enterprise automation engineers who've seen what works at scale.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            {/* Michael Krebs */}
+            <div className="text-center">
+              <div className="w-48 h-48 mx-auto mb-6 bg-slate-200 rounded-full flex items-center justify-center">
+                <div className="text-6xl text-slate-400">👤</div>
+              </div>
+              <h3 className="text-2xl font-light text-slate-900 mb-2 tracking-wide">
+                MICHAEL KREBS
+              </h3>
+              <p className="text-cyan-600 font-medium mb-4 tracking-wider">FOUNDER & LEAD ENGINEER</p>
+              <p className="text-gray-600 leading-relaxed">
+                Former automation architect at Fortune 500 companies. Built workflow optimization systems
+                that saved over $50M annually across enterprise clients. Specialized in n8n automation
+                platforms and AI integration strategies for mid-market businesses.
+              </p>
+            </div>
+
+            {/* Thomas Baker */}
+            <div className="text-center">
+              <div className="w-48 h-48 mx-auto mb-6 bg-slate-200 rounded-full flex items-center justify-center">
+                <div className="text-6xl text-slate-400">👤</div>
+              </div>
+              <h3 className="text-2xl font-light text-slate-900 mb-2 tracking-wide">
+                THOMAS BAKER
+              </h3>
+              <p className="text-cyan-600 font-medium mb-4 tracking-wider">SYSTEMS INTEGRATION DIRECTOR</p>
+              <p className="text-gray-600 leading-relaxed">
+                15+ years designing business process automation for SMB growth companies. Expert in
+                translating complex operational requirements into streamlined AI workflows. Previously
+                led digital transformation initiatives for 200+ mid-market organizations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Catalog Search */}
+      <section id="catalog" className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-light text-slate-900 mb-4 tracking-wider">
+              AGENT CATALOG
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+              Browse 2,046 proven automation workflows. Each one tested in real businesses,
+              with clear ROI data and implementation timelines. No guesswork, just results.
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
             {/* Search Bar */}
             <div className="relative mb-8">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-6 h-6" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500 w-6 h-6" />
               <input
                 type="text"
                 placeholder="Search for AI agents (e.g., 'sales automation', 'customer support')"
-                className="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-300 rounded-lg focus:border-red-600 focus:outline-none"
+                className="w-full pl-12 pr-24 py-4 text-lg border-2 border-slate-300 rounded focus:border-cyan-500 focus:outline-none font-light"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleKeyPress}
               />
+              <button
+                onClick={searchWorkflows}
+                disabled={!searchQuery.trim() || isLoading}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-cyan-500 text-slate-900 px-4 py-2 rounded font-medium hover:bg-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'SEARCH'}
+              </button>
             </div>
 
             {/* Category Filter */}
@@ -192,29 +287,71 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Search Results Placeholder */}
-            <div className="bg-white rounded-lg border-2 border-gray-200 p-8 text-center">
-              <div className="text-gray-500 mb-4">
-                <Search className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                Enter a search term to explore our catalog of 2,046 AI agents
-              </div>
-              <p className="text-sm text-gray-400">
-                Or request a consultation below to discuss custom agent development
-              </p>
+            {/* Search Results */}
+            <div className="bg-white rounded border border-slate-300">
+              {!hasSearched ? (
+                <div className="p-8 text-center">
+                  <div className="text-slate-500 mb-4">
+                    <Search className="w-12 h-12 mx-auto mb-4 text-slate-400" />
+                    <p className="font-light">Enter a search term to explore our catalog of 2,046 AI agents</p>
+                  </div>
+                  <p className="text-sm text-slate-400">
+                    Or request a consultation below to discuss custom agent development
+                  </p>
+                </div>
+              ) : isLoading ? (
+                <div className="p-8 text-center">
+                  <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-cyan-500" />
+                  <p className="text-slate-600 font-light">Searching workflow database...</p>
+                </div>
+              ) : workflows.length > 0 ? (
+                <div className="divide-y divide-slate-200">
+                  {workflows.map((workflow, index) => (
+                    <div key={workflow.id || index} className="p-6 hover:bg-slate-50">
+                      <div className="flex justify-between items-start mb-3">
+                        <h3 className="text-lg font-medium text-slate-900">{workflow.name}</h3>
+                        <span className="bg-cyan-100 text-cyan-800 px-2 py-1 rounded text-sm font-medium">
+                          {workflow.category}
+                        </span>
+                      </div>
+                      <p className="text-slate-600 mb-4 font-light">{workflow.summary}</p>
+                      <div className="grid grid-cols-3 gap-4 text-sm">
+                        <div>
+                          <span className="text-slate-500">Time Saved:</span>
+                          <div className="font-medium text-slate-900">{workflow.timeSavings} hrs/week</div>
+                        </div>
+                        <div>
+                          <span className="text-slate-500">Annual ROI:</span>
+                          <div className="font-medium text-cyan-600">${workflow.annualROI?.toLocaleString()}</div>
+                        </div>
+                        <div>
+                          <span className="text-slate-500">Complexity:</span>
+                          <div className="font-medium text-slate-900">{workflow.complexity}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-8 text-center">
+                  <p className="text-slate-600 font-light">No workflows found for "{searchQuery}"</p>
+                  <p className="text-sm text-slate-400 mt-2">Try a different search term or request a custom consultation</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
       {/* Consultation Form */}
-      <section id="consultation" className="py-20 bg-blue-900 text-white">
+      <section id="consultation" className="py-20 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">
-              REQUEST CONSULTATION
+            <h2 className="text-4xl font-light mb-4 tracking-wider">
+              MISSION CONTROL
             </h2>
-            <p className="text-xl text-blue-200">
-              Let's discuss how AI agents can transform your business operations and drive American competitiveness.
+            <p className="text-xl text-cyan-300 font-light">
+              Ready to implement AI that actually works? Let's design your automation strategy.
             </p>
           </div>
 
