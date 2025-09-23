@@ -13,7 +13,8 @@ module.exports = {
         'steel-gray': '#374151',
       },
       fontFamily: {
-        'industrial': ['Inter', 'system-ui', 'sans-serif'],
+        'nasa': ['Inter', 'system-ui', 'sans-serif'],
+        'nasa-mono': ['JetBrains Mono', 'monospace'],
       },
     },
   },

@@ -52,8 +52,7 @@ export default function HomePage() {
       description: "Automatically qualifies leads, scores prospects, and schedules follow-ups",
       roi: "$156,000",
       timeSaved: "32 hrs/week",
-      successRate: "94%",
-      companies: 127
+      successRate: "94%"
     },
     {
       name: "Customer Support Intelligence",
@@ -61,8 +60,7 @@ export default function HomePage() {
       description: "Handles 80% of customer inquiries with AI-powered responses",
       roi: "$89,000",
       timeSaved: "25 hrs/week",
-      successRate: "91%",
-      companies: 89
+      successRate: "91%"
     },
     {
       name: "Content Generation Engine",
@@ -70,8 +68,7 @@ export default function HomePage() {
       description: "Creates personalized marketing content across all channels",
       roi: "$67,000",
       timeSaved: "18 hrs/week",
-      successRate: "88%",
-      companies: 156
+      successRate: "88%"
     }
   ]
 
@@ -148,39 +145,33 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredAgents.map((agent, index) => (
-              <div key={index} className="bg-gray-50 border-2 border-gray-200 rounded-lg p-8 hover:border-red-600 transition-colors">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="bg-red-600 text-white px-3 py-1 rounded text-sm font-medium">
+              <div key={index} className="bg-white border border-slate-300 p-8 hover:border-cyan-400 transition-colors">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="bg-slate-900 text-cyan-400 px-4 py-1 text-xs font-mono tracking-widest uppercase">
                     {agent.category}
                   </span>
-                  <div className="flex items-center text-yellow-500">
-                    <Star className="w-4 h-4 fill-current" />
-                    <span className="ml-1 text-sm text-gray-600">{agent.successRate}</span>
+                  <div className="text-right">
+                    <span className="text-sm text-slate-500 font-mono">{agent.successRate}</span>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-lg font-mono uppercase tracking-wider text-slate-900 mb-4 leading-tight">
                   {agent.name}
                 </h3>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-slate-600 mb-8 font-light leading-relaxed">
                   {agent.description}
                 </p>
 
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div>
-                    <div className="text-2xl font-bold text-red-600">{agent.roi}</div>
-                    <div className="text-sm text-gray-500">Annual ROI</div>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-mono text-cyan-600 mb-1">{agent.roi}</div>
+                    <div className="text-xs uppercase tracking-wider text-slate-500">ANNUAL ROI</div>
                   </div>
-                  <div>
-                    <div className="text-2xl font-bold text-blue-600">{agent.timeSaved}</div>
-                    <div className="text-sm text-gray-500">Time Saved</div>
+                  <div className="text-center">
+                    <div className="text-2xl font-mono text-cyan-600 mb-1">{agent.timeSaved}</div>
+                    <div className="text-xs uppercase tracking-wider text-slate-500">TIME SAVED</div>
                   </div>
-                </div>
-
-                <div className="flex items-center text-gray-500 text-sm">
-                  <Users className="w-4 h-4 mr-2" />
-                  {agent.companies} companies using this agent
                 </div>
               </div>
             ))}
@@ -206,10 +197,9 @@ export default function HomePage() {
               <div className="w-48 h-48 mx-auto mb-6 bg-slate-200 rounded-full flex items-center justify-center">
                 <div className="text-6xl text-slate-400">👤</div>
               </div>
-              <h3 className="text-2xl font-light text-slate-900 mb-2 tracking-wide">
+              <h3 className="text-2xl font-light text-slate-900 mb-6 tracking-wide">
                 MICHAEL KREBS
               </h3>
-              <p className="text-cyan-600 font-medium mb-4 tracking-wider">FOUNDER & LEAD ENGINEER</p>
               <p className="text-gray-600 leading-relaxed">
                 Former automation architect at Fortune 500 companies. Built workflow optimization systems
                 that saved over $50M annually across enterprise clients. Specialized in n8n automation
@@ -222,10 +212,9 @@ export default function HomePage() {
               <div className="w-48 h-48 mx-auto mb-6 bg-slate-200 rounded-full flex items-center justify-center">
                 <div className="text-6xl text-slate-400">👤</div>
               </div>
-              <h3 className="text-2xl font-light text-slate-900 mb-2 tracking-wide">
+              <h3 className="text-2xl font-light text-slate-900 mb-6 tracking-wide">
                 THOMAS BAKER
               </h3>
-              <p className="text-cyan-600 font-medium mb-4 tracking-wider">SYSTEMS INTEGRATION DIRECTOR</p>
               <p className="text-gray-600 leading-relaxed">
                 15+ years designing business process automation for SMB growth companies. Expert in
                 translating complex operational requirements into streamlined AI workflows. Previously
