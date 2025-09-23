@@ -35,6 +35,7 @@ export async function GET(request: NextRequest) {
       SELECT
         id,
         name,
+        normalized_title,
         summary,
         category,
         node_types,
@@ -52,11 +53,12 @@ export async function GET(request: NextRequest) {
     if (query.trim()) {
       sql += ` AND (
         LOWER(name) LIKE LOWER(?) OR
+        LOWER(normalized_title) LIKE LOWER(?) OR
         LOWER(summary) LIKE LOWER(?) OR
         LOWER(business_outcome) LIKE LOWER(?)
       )`
       const searchTerm = `%${query}%`
-      params.push(searchTerm, searchTerm, searchTerm)
+      params.push(searchTerm, searchTerm, searchTerm, searchTerm)
     }
 
     // Add category filter
@@ -79,7 +81,7 @@ export async function GET(request: NextRequest) {
     // Format the results for the frontend
     const workflows = rows.map((row: any) => ({
       id: row.id,
-      name: row.name,
+      name: row.normalized_title || row.name, // Use normalized title if available, fallback to original name
       summary: row.summary,
       category: row.category || 'General',
       nodeTypes: row.node_types ? row.node_types.split(',') : [],
