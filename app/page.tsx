@@ -96,7 +96,7 @@ export default function HomePage() {
     },
     {
       icon: Target,
-      title: "Custom Workflow",
+      title: "Custom Agents",
       description: "We can build a custom AI agent to automate any manual process in your business based on your specific operational needs.",
       workflows: "Built to order"
     }
@@ -132,15 +132,15 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Reclaim 20+ hours weekly with
-              <span className="text-blue-600"> pre-built automation kits</span>
+              We solve your business problems with
+              <span className="text-blue-600"> AI</span>
             </h1>
             <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
               We build AI agents that do your repetitive, manual work while you focus on what really matters.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <a href="#kits" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                See Work We've Automated
+                Use Cases
               </a>
               <a href="#contact" className="bg-white text-gray-900 px-8 py-3 rounded-lg border border-gray-300 hover:border-gray-400 transition-colors font-medium">
                 Get In Touch
@@ -155,7 +155,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              We've Built AI Agents to Eliminate Manual Work in Every Business Function
+              AI Agents to Eliminate Manual Work in Every Business Function
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We've built and applied over 2,056 AI agents for businesses like yours.
@@ -166,7 +166,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {aiAgents.map((agent, index) => {
               const IconComponent = agent.icon;
-              const isCustom = agent.title === "Custom Workflow";
+              const isCustom = agent.title === "Custom Agents";
               return (
                 <div key={index} className={`rounded-lg p-6 hover:shadow-lg transition-shadow ${
                   isCustom ? 'bg-blue-50 border-2 border-blue-200' : 'bg-gray-50'
@@ -208,18 +208,18 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="overflow-hidden">
-            <div className="flex animate-scroll space-x-12">
+          <div className="overflow-hidden w-full">
+            <div className="flex animate-scroll space-x-8" style={{width: 'calc(200% + 8rem)'}}>
               {/* First set of logos */}
               {['ActiveCampaign', 'Airtable', 'Asana', 'Calendly', 'Chargebee', 'Clickup', 'ConvertKit', 'Copper', 'Discord', 'GitHub', 'GitLab', 'Gmail', 'Google Drive', 'Google Sheets', 'HubSpot', 'Intercom', 'Jira', 'Lemlist', 'Mailchimp', 'Notion', 'OpenAI', 'Pipedrive', 'Quickbooks', 'Shopify', 'Slack', 'Trello', 'Zendesk'].map((tool, index) => (
-                <div key={index} className="flex-shrink-0 w-24 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
-                  <span className="text-xs font-medium text-gray-600 text-center">{tool}</span>
+                <div key={index} className="flex-shrink-0 w-32 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                  <span className="text-xs font-medium text-gray-600 text-center px-2">{tool}</span>
                 </div>
               ))}
               {/* Duplicate for seamless loop */}
               {['ActiveCampaign', 'Airtable', 'Asana', 'Calendly', 'Chargebee', 'Clickup', 'ConvertKit', 'Copper', 'Discord', 'GitHub', 'GitLab', 'Gmail', 'Google Drive', 'Google Sheets', 'HubSpot', 'Intercom', 'Jira', 'Lemlist', 'Mailchimp', 'Notion', 'OpenAI', 'Pipedrive', 'Quickbooks', 'Shopify', 'Slack', 'Trello', 'Zendesk'].map((tool, index) => (
-                <div key={`duplicate-${index}`} className="flex-shrink-0 w-24 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
-                  <span className="text-xs font-medium text-gray-600 text-center">{tool}</span>
+                <div key={`duplicate-${index}`} className="flex-shrink-0 w-32 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                  <span className="text-xs font-medium text-gray-600 text-center px-2">{tool}</span>
                 </div>
               ))}
             </div>
@@ -363,7 +363,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name *
+                  Name *
                 </label>
                 <input
                   type="text"
@@ -371,19 +371,6 @@ export default function HomePage() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Company *
-                </label>
-                <input
-                  type="text"
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email *
@@ -394,37 +381,27 @@ export default function HomePage() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Company Size
-                </label>
-                <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20">
-                  <option>Select company size</option>
-                  <option>1-10 employees</option>
-                  <option>11-50 employees</option>
-                  <option>51-200 employees</option>
-                  <option>201-500 employees</option>
-                  <option>500+ employees</option>
-                </select>
-              </div>
             </div>
 
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Which manual task eats up the most hours each week? *
+                Company Name *
               </label>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-                {['Data entry between systems', 'Customer support responses', 'Lead follow-up and outreach', 'Report generation and analysis', 'Social media posting and management', 'Invoice processing and bookkeeping', 'Project status updates', 'Other (please specify below)'].map((option, index) => (
-                  <label key={index} className="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer">
-                    <input type="radio" name="main_pain_point" value={option} className="mr-3 text-blue-600" />
-                    <span className="text-sm text-gray-700">{option}</span>
-                  </label>
-                ))}
-              </div>
-              <textarea
-                rows={3}
+              <input
+                type="text"
+                required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
-                placeholder="Additional details about your manual processes or 'Other' explanation..."
+              />
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Additional Details
+              </label>
+              <textarea
+                rows={4}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
+                placeholder="Tell us about your manual processes or what you'd like to automate..."
               />
             </div>
 
