@@ -112,13 +112,13 @@ export default function HomePage() {
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
               <div className="text-2xl font-bold text-gray-900">
-                Gold Star Workflows
+                ⭐ Gold Star Workflows
               </div>
             </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#kits" className="text-gray-600 hover:text-blue-600 font-medium">AI Agents</a>
-              <a href="#catalog" className="text-gray-600 hover:text-blue-600 font-medium">Agent Database</a>
-              <a href="#team" className="text-gray-600 hover:text-blue-600 font-medium">Team</a>
+            <nav className="hidden md:flex items-center space-x-8">
+              <a href="#kits" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">AI Agents</a>
+              <a href="#catalog" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Agent Database</a>
+              <a href="#team" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Team</a>
               <a href="#contact" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                 Get Started
               </a>
@@ -129,7 +129,7 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               We solve your business problems with
@@ -138,7 +138,7 @@ export default function HomePage() {
             <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
               We build AI agents that do your repetitive, manual work while you focus on what really matters.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a href="#kits" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                 Use Cases
               </a>
@@ -203,13 +203,13 @@ export default function HomePage() {
       <section className="py-16 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
               Our Agents Interact With Your Existing Tech Stack
             </h2>
           </div>
 
-          <div className="overflow-hidden w-full">
-            <div className="flex animate-scroll space-x-8" style={{width: 'calc(200% + 8rem)'}}>
+          <div className="overflow-hidden w-full relative">
+            <div className="flex animate-scroll space-x-8" style={{width: 'calc(200% + 16rem)'}}>
               {/* First set of logos */}
               {['ActiveCampaign', 'Airtable', 'Asana', 'Calendly', 'Chargebee', 'Clickup', 'ConvertKit', 'Copper', 'Discord', 'GitHub', 'GitLab', 'Gmail', 'Google Drive', 'Google Sheets', 'HubSpot', 'Intercom', 'Jira', 'Lemlist', 'Mailchimp', 'Notion', 'OpenAI', 'Pipedrive', 'Quickbooks', 'Shopify', 'Slack', 'Trello', 'Zendesk'].map((tool, index) => (
                 <div key={index} className="flex-shrink-0 w-32 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
@@ -278,7 +278,6 @@ export default function HomePage() {
               Agent Database
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Search our database of 2,056 AI agents we've already built.
               See the agents we use to eliminate manual work.
             </p>
           </div>
