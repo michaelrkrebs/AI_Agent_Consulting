@@ -1,8 +1,22 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, ArrowRight, CheckCircle, Star, TrendingUp, Users, DollarSign, Loader2, Bot, Zap, Target } from 'lucide-react'
+import { Search, ArrowRight, CheckCircle, Star, TrendingUp, Users, DollarSign, Loader2 } from 'lucide-react'
+import {
+  MagnifyingGlassIcon,
+  BoltIcon,
+  ChartBarIcon,
+  CpuChipIcon,
+  CurrencyDollarIcon,
+  ClipboardDocumentListIcon,
+  ShoppingCartIcon,
+  UserGroupIcon,
+  Cog6ToothIcon,
+  Bars3Icon,
+  XMarkIcon
+} from '@heroicons/react/24/outline'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import Image from 'next/image'
 
 // Import Simple Icons
 import {
@@ -36,6 +50,7 @@ export default function HomePage() {
   const [workflows, setWorkflows] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [hasSearched, setHasSearched] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Tech stack tools with logos
   const techTools = [
@@ -100,55 +115,55 @@ export default function HomePage() {
   // AI Agent offerings
   const aiAgents = [
     {
-      icon: Bot,
+      icon: MagnifyingGlassIcon,
       title: "Lead Generation & Qualification",
       description: "Web scraping for prospect data, CRM integration, and automated email sequences. Generate and qualify leads while you sleep.",
       workflows: "679+ agents to choose from"
     },
     {
-      icon: Zap,
+      icon: BoltIcon,
       title: "Customer Support Automation",
       description: "Automated ticket routing, data extraction from requests, and response templates. Handle 80% of support requests automatically.",
       workflows: "725+ agents to choose from"
     },
     {
-      icon: Target,
+      icon: ChartBarIcon,
       title: "Content Marketing Engine",
       description: "Content creation, social media posting, and performance tracking. Maintain consistent marketing with 90% less manual work.",
       workflows: "325+ agents to choose from"
     },
     {
-      icon: Bot,
+      icon: CpuChipIcon,
       title: "Sales Pipeline Automation",
       description: "Lead capture, CRM updates, and follow-up sequences. Never lose a lead due to manual follow-up delays.",
       workflows: "450+ agents to choose from"
     },
     {
-      icon: Zap,
+      icon: CurrencyDollarIcon,
       title: "Financial Operations",
       description: "Invoice processing, expense tracking, and automated reporting. Close books 5x faster with zero data entry errors.",
       workflows: "280+ agents to choose from"
     },
     {
-      icon: Target,
+      icon: ClipboardDocumentListIcon,
       title: "Project Management Automation",
       description: "Task creation, status updates, and deadline tracking. Keep projects on track without constant manual check-ins.",
       workflows: "500+ agents to choose from"
     },
     {
-      icon: Bot,
+      icon: ShoppingCartIcon,
       title: "E-commerce Operations",
       description: "Order processing, inventory tracking, and customer communication. Run your online store while focusing on growth.",
       workflows: "400+ agents to choose from"
     },
     {
-      icon: Zap,
+      icon: UserGroupIcon,
       title: "HR & Employee Onboarding",
       description: "Document collection, system access provisioning, and training sequences. Onboard new hires in 1 day instead of 1 week.",
       workflows: "225+ agents to choose from"
     },
     {
-      icon: Target,
+      icon: Cog6ToothIcon,
       title: "Custom Agents",
       description: "We can build a custom AI agent to automate any manual process in your business based on your specific operational needs.",
       workflows: "Built to order"
@@ -163,11 +178,21 @@ export default function HomePage() {
       <header className="bg-white/90 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
+            {/* Logo */}
             <div className="flex items-center group">
-              <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
-                ⭐ Gold Star Workflows
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <div className="relative">
+                  <Star className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 fill-yellow-400 drop-shadow-lg" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full blur-sm opacity-50 animate-pulse-slow"></div>
+                </div>
+                <div className="text-lg sm:text-2xl font-black tracking-tight">
+                  <span className="bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 bg-clip-text text-transparent">Gold Star</span>
+                  <span className="text-slate-800 ml-1 sm:ml-2 hidden xs:inline">Workflows</span>
+                </div>
               </div>
             </div>
+
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               <a href="#kits" className="text-slate-600 hover:text-blue-600 font-medium transition-all duration-200 hover:scale-105 relative group">
                 AI Agents
@@ -185,7 +210,55 @@ export default function HomePage() {
                 Get Started
               </a>
             </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-slate-100 transition-colors"
+            >
+              {isMobileMenuOpen ? (
+                <XMarkIcon className="w-6 h-6" />
+              ) : (
+                <Bars3Icon className="w-6 h-6" />
+              )}
+            </button>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden border-t border-slate-200 bg-white/95 backdrop-blur-lg">
+              <nav className="py-4 space-y-4">
+                <a
+                  href="#kits"
+                  className="block px-4 py-2 text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  AI Agents
+                </a>
+                <a
+                  href="#catalog"
+                  className="block px-4 py-2 text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Agent Database
+                </a>
+                <a
+                  href="#team"
+                  className="block px-4 py-2 text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Team
+                </a>
+                <a
+                  href="#contact"
+                  className="block mx-4 mt-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl text-center font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Get Started
+                </a>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
@@ -195,11 +268,11 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">
-              <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 mb-6 sm:mb-8 leading-tight">
                 We solve your business problems with
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> AI</span>
               </h1>
-              <p className="text-xl text-slate-600 mb-12 max-w-2xl leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-600 mb-8 sm:mb-12 max-w-2xl leading-relaxed">
                 We build AI agents that do your repetitive, manual work while you focus on what really matters.
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
@@ -212,16 +285,19 @@ export default function HomePage() {
                 </a>
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end">
-              <div className="w-80 h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl flex items-center justify-center shadow-2xl hover:rotate-3 transition-transform duration-500">
-                <div className="w-80 h-80 flex items-center justify-center">
-                  <DotLottieReact
-                    src="https://lottie.host/1b3cda26-1a71-4753-af4e-5755479c7619/dcYkr9Sm7C.lottie"
-                    loop
-                    autoplay
-                    className="w-full h-full"
-                  />
-                </div>
+            <div className="flex justify-center lg:justify-end relative">
+              <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 relative overflow-hidden">
+                {/* Background blur effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
+                {/* Lottie animation */}
+                <DotLottieReact
+                  src="https://lottie.host/1b3cda26-1a71-4753-af4e-5755479c7619/dcYkr9Sm7C.lottie"
+                  loop
+                  autoplay
+                  className="w-full h-full relative z-10 mix-blend-multiply"
+                />
+                {/* Additional glow effect */}
+                <div className="absolute inset-4 bg-gradient-radial from-blue-300/20 via-purple-300/10 to-transparent rounded-full animate-pulse-slow"></div>
               </div>
             </div>
           </div>
@@ -302,27 +378,27 @@ export default function HomePage() {
           </div>
 
           <div className="overflow-hidden w-full relative">
-            <div className="flex animate-scroll space-x-8" style={{width: 'calc(200% + 16rem)'}}>
+            <div className="flex animate-scroll space-x-4 sm:space-x-8" style={{width: 'calc(200% + 16rem)'}}>
               {/* First set of logos */}
               {techTools.map((tool, index) => (
-                <div key={index} className="flex-shrink-0 w-36 h-20 bg-white/10 backdrop-blur rounded-2xl shadow-lg flex flex-col items-center justify-center p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                <div key={index} className="flex-shrink-0 w-28 h-16 sm:w-36 sm:h-20 bg-white/10 backdrop-blur rounded-2xl shadow-lg flex flex-col items-center justify-center p-2 sm:p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">
                   <div
-                    className="w-10 h-10 mb-2"
+                    className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 mb-1 sm:mb-2"
                     dangerouslySetInnerHTML={{ __html: tool.icon.svg }}
                     style={{ color: `#${tool.icon.hex}` }}
                   />
-                  <span className="text-xs font-medium text-white text-center">{tool.name}</span>
+                  <span className="text-xs font-medium text-white text-center hidden sm:block">{tool.name}</span>
                 </div>
               ))}
               {/* Duplicate for seamless loop */}
               {techTools.map((tool, index) => (
-                <div key={`duplicate-${index}`} className="flex-shrink-0 w-36 h-20 bg-white/10 backdrop-blur rounded-2xl shadow-lg flex flex-col items-center justify-center p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                <div key={`duplicate-${index}`} className="flex-shrink-0 w-28 h-16 sm:w-36 sm:h-20 bg-white/10 backdrop-blur rounded-2xl shadow-lg flex flex-col items-center justify-center p-2 sm:p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">
                   <div
-                    className="w-10 h-10 mb-2"
+                    className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 mb-1 sm:mb-2"
                     dangerouslySetInnerHTML={{ __html: tool.icon.svg }}
                     style={{ color: `#${tool.icon.hex}` }}
                   />
-                  <span className="text-xs font-medium text-white text-center">{tool.name}</span>
+                  <span className="text-xs font-medium text-white text-center hidden sm:block">{tool.name}</span>
                 </div>
               ))}
             </div>
@@ -346,8 +422,14 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             {/* Michael Krebs */}
             <div className="bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-                <div className="text-2xl font-semibold text-blue-600">MK</div>
+              <div className="w-20 h-20 mx-auto mb-6 relative overflow-hidden rounded-full">
+                <Image
+                  src="/images/michael-krebs.jpg"
+                  alt="Michael Krebs"
+                  width={80}
+                  height={80}
+                  className="object-cover w-full h-full"
+                />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
                 Michael Krebs
@@ -359,8 +441,14 @@ export default function HomePage() {
 
             {/* Thomas Baker */}
             <div className="bg-white rounded-lg p-8 shadow-sm">
-              <div className="w-20 h-20 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
-                <div className="text-2xl font-semibold text-blue-600">TB</div>
+              <div className="w-20 h-20 mx-auto mb-6 relative overflow-hidden rounded-full">
+                <Image
+                  src="/images/thomas-baker.jpg"
+                  alt="Thomas Baker"
+                  width={80}
+                  height={80}
+                  className="object-cover w-full h-full"
+                />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
                 Thomas Baker
@@ -523,8 +611,15 @@ export default function HomePage() {
       <footer className="bg-white border-t border-gray-200 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="text-2xl font-bold text-gray-900 mb-4">
-              Gold Star Workflows
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="relative">
+                <Star className="w-8 h-8 text-yellow-400 fill-yellow-400 drop-shadow-lg" />
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full blur-sm opacity-50 animate-pulse-slow"></div>
+              </div>
+              <div className="text-2xl font-black tracking-tight">
+                <span className="bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 bg-clip-text text-transparent">Gold Star</span>
+                <span className="text-slate-800 ml-2">Workflows</span>
+              </div>
             </div>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               We build AI agents that eliminate manual work and improve operations.
