@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Search, ArrowRight, CheckCircle, Star, TrendingUp, Users, DollarSign, Loader2, Bot, Zap, Target } from 'lucide-react'
-import Lottie from 'lottie-react'
 
 // Import Simple Icons
 import {
@@ -36,22 +35,6 @@ export default function HomePage() {
   const [workflows, setWorkflows] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [hasSearched, setHasSearched] = useState(false)
-  const [aiRobotAnimation, setAiRobotAnimation] = useState(null)
-  const [workflowAnimation, setWorkflowAnimation] = useState(null)
-  const [successAnimation, setSuccessAnimation] = useState(null)
-
-  // Load animations
-  useEffect(() => {
-    Promise.all([
-      fetch('/animations/ai-robot.json').then(res => res.json()),
-      fetch('/animations/workflow.json').then(res => res.json()),
-      fetch('/animations/success.json').then(res => res.json())
-    ]).then(([aiRobot, workflow, success]) => {
-      setAiRobotAnimation(aiRobot)
-      setWorkflowAnimation(workflow)
-      setSuccessAnimation(success)
-    }).catch(console.error)
-  }, [])
 
   // Tech stack tools with logos
   const techTools = [
@@ -230,15 +213,11 @@ export default function HomePage() {
             </div>
             <div className="flex justify-center lg:justify-end">
               <div className="w-80 h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl flex items-center justify-center shadow-2xl hover:rotate-3 transition-transform duration-500">
-                {aiRobotAnimation ? (
-                  <Lottie
-                    animationData={aiRobotAnimation}
-                    loop={true}
-                    className="w-64 h-64"
-                  />
-                ) : (
-                  <Bot className="w-32 h-32 text-blue-600" />
-                )}
+                <div className="relative w-64 h-64 flex items-center justify-center">
+                  <Bot className="w-32 h-32 text-blue-600 animate-pulse-slow" />
+                  <div className="absolute inset-0 rounded-full bg-blue-200/20 animate-ping"></div>
+                  <div className="absolute inset-4 rounded-full bg-blue-300/10 animate-pulse"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -274,15 +253,12 @@ export default function HomePage() {
                     <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
                       isCustom ? 'bg-gradient-to-br from-blue-200 to-purple-200' : 'bg-gradient-to-br from-blue-100 to-purple-100'
                     }`}>
-                      {workflowAnimation && !isCustom ? (
-                        <Lottie
-                          animationData={workflowAnimation}
-                          loop={true}
-                          className="w-10 h-10"
-                        />
-                      ) : (
-                        <IconComponent className="w-8 h-8 text-blue-600" />
-                      )}
+                      <div className="relative">
+                        <IconComponent className="w-8 h-8 text-blue-600 transition-transform duration-300 group-hover:scale-110" />
+                        {!isCustom && (
+                          <div className="absolute -inset-1 rounded-full bg-blue-200/30 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        )}
+                      </div>
                     </div>
                     <div className="mb-4">
                       <h3 className={`text-xl font-bold mb-2 ${
