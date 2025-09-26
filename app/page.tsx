@@ -3,12 +3,62 @@
 import { useState, useEffect } from 'react'
 import { Search, ArrowRight, CheckCircle, Star, TrendingUp, Users, DollarSign, Loader2, Bot, Zap, Target } from 'lucide-react'
 
+// Import Simple Icons
+import {
+  siAirtable,
+  siAsana,
+  siCalendly,
+  siClickup,
+  siDiscord,
+  siGithub,
+  siGitlab,
+  siGmail,
+  siGoogledrive,
+  siGooglesheets,
+  siHubspot,
+  siIntercom,
+  siJira,
+  siMailchimp,
+  siNotion,
+  siOpenai,
+  siQuickbooks,
+  siShopify,
+  siSlack,
+  siTrello,
+  siZendesk
+} from 'simple-icons'
+
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [workflows, setWorkflows] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [hasSearched, setHasSearched] = useState(false)
+
+  // Tech stack tools with logos
+  const techTools = [
+    { name: 'Airtable', icon: siAirtable },
+    { name: 'Asana', icon: siAsana },
+    { name: 'Calendly', icon: siCalendly },
+    { name: 'Clickup', icon: siClickup },
+    { name: 'Discord', icon: siDiscord },
+    { name: 'GitHub', icon: siGithub },
+    { name: 'GitLab', icon: siGitlab },
+    { name: 'Gmail', icon: siGmail },
+    { name: 'Google Drive', icon: siGoogledrive },
+    { name: 'Google Sheets', icon: siGooglesheets },
+    { name: 'HubSpot', icon: siHubspot },
+    { name: 'Intercom', icon: siIntercom },
+    { name: 'Jira', icon: siJira },
+    { name: 'Mailchimp', icon: siMailchimp },
+    { name: 'Notion', icon: siNotion },
+    { name: 'OpenAI', icon: siOpenai },
+    { name: 'Quickbooks', icon: siQuickbooks },
+    { name: 'Shopify', icon: siShopify },
+    { name: 'Slack', icon: siSlack },
+    { name: 'Trello', icon: siTrello },
+    { name: 'Zendesk', icon: siZendesk }
+  ]
 
   // Fetch workflows from our API
   const searchWorkflows = async () => {
@@ -211,15 +261,25 @@ export default function HomePage() {
           <div className="overflow-hidden w-full relative">
             <div className="flex animate-scroll space-x-8" style={{width: 'calc(200% + 16rem)'}}>
               {/* First set of logos */}
-              {['ActiveCampaign', 'Airtable', 'Asana', 'Calendly', 'Chargebee', 'Clickup', 'ConvertKit', 'Copper', 'Discord', 'GitHub', 'GitLab', 'Gmail', 'Google Drive', 'Google Sheets', 'HubSpot', 'Intercom', 'Jira', 'Lemlist', 'Mailchimp', 'Notion', 'OpenAI', 'Pipedrive', 'Quickbooks', 'Shopify', 'Slack', 'Trello', 'Zendesk'].map((tool, index) => (
-                <div key={index} className="flex-shrink-0 w-32 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
-                  <span className="text-xs font-medium text-gray-600 text-center px-2">{tool}</span>
+              {techTools.map((tool, index) => (
+                <div key={index} className="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-sm flex flex-col items-center justify-center p-3">
+                  <div
+                    className="w-8 h-8 mb-1"
+                    dangerouslySetInnerHTML={{ __html: tool.icon.svg }}
+                    style={{ color: `#${tool.icon.hex}` }}
+                  />
+                  <span className="text-xs font-medium text-gray-600 text-center">{tool.name}</span>
                 </div>
               ))}
               {/* Duplicate for seamless loop */}
-              {['ActiveCampaign', 'Airtable', 'Asana', 'Calendly', 'Chargebee', 'Clickup', 'ConvertKit', 'Copper', 'Discord', 'GitHub', 'GitLab', 'Gmail', 'Google Drive', 'Google Sheets', 'HubSpot', 'Intercom', 'Jira', 'Lemlist', 'Mailchimp', 'Notion', 'OpenAI', 'Pipedrive', 'Quickbooks', 'Shopify', 'Slack', 'Trello', 'Zendesk'].map((tool, index) => (
-                <div key={`duplicate-${index}`} className="flex-shrink-0 w-32 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
-                  <span className="text-xs font-medium text-gray-600 text-center px-2">{tool}</span>
+              {techTools.map((tool, index) => (
+                <div key={`duplicate-${index}`} className="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-sm flex flex-col items-center justify-center p-3">
+                  <div
+                    className="w-8 h-8 mb-1"
+                    dangerouslySetInnerHTML={{ __html: tool.icon.svg }}
+                    style={{ color: `#${tool.icon.hex}` }}
+                  />
+                  <span className="text-xs font-medium text-gray-600 text-center">{tool.name}</span>
                 </div>
               ))}
             </div>
