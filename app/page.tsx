@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Search, ArrowRight, CheckCircle, Star, TrendingUp, Users, DollarSign, Loader2, Bot, Zap, Target } from 'lucide-react'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 // Import Simple Icons
 import {
@@ -213,10 +214,13 @@ export default function HomePage() {
             </div>
             <div className="flex justify-center lg:justify-end">
               <div className="w-80 h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl flex items-center justify-center shadow-2xl hover:rotate-3 transition-transform duration-500">
-                <div className="relative w-64 h-64 flex items-center justify-center">
-                  <Bot className="w-32 h-32 text-blue-600 animate-pulse-slow" />
-                  <div className="absolute inset-0 rounded-full bg-blue-200/20 animate-ping"></div>
-                  <div className="absolute inset-4 rounded-full bg-blue-300/10 animate-pulse"></div>
+                <div className="w-80 h-80 flex items-center justify-center">
+                  <DotLottieReact
+                    src="https://lottie.host/1b3cda26-1a71-4753-af4e-5755479c7619/dcYkr9Sm7C.lottie"
+                    loop
+                    autoplay
+                    className="w-full h-full"
+                  />
                 </div>
               </div>
             </div>
