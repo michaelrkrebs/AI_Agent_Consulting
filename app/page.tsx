@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Search, ArrowRight, CheckCircle, Star, TrendingUp, Users, DollarSign, Loader2, Bot, Zap, Target } from 'lucide-react'
+import Lottie from 'lottie-react'
 
 // Import Simple Icons
 import {
@@ -35,6 +36,22 @@ export default function HomePage() {
   const [workflows, setWorkflows] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [hasSearched, setHasSearched] = useState(false)
+  const [aiRobotAnimation, setAiRobotAnimation] = useState(null)
+  const [workflowAnimation, setWorkflowAnimation] = useState(null)
+  const [successAnimation, setSuccessAnimation] = useState(null)
+
+  // Load animations
+  useEffect(() => {
+    Promise.all([
+      fetch('/animations/ai-robot.json').then(res => res.json()),
+      fetch('/animations/workflow.json').then(res => res.json()),
+      fetch('/animations/success.json').then(res => res.json())
+    ]).then(([aiRobot, workflow, success]) => {
+      setAiRobotAnimation(aiRobot)
+      setWorkflowAnimation(workflow)
+      setSuccessAnimation(success)
+    }).catch(console.error)
+  }, [])
 
   // Tech stack tools with logos
   const techTools = [
@@ -157,21 +174,30 @@ export default function HomePage() {
   const categories = ['All', 'Sales', 'Marketing', 'Support', 'Operations', 'Finance', 'HR']
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-white/90 backdrop-blur-lg shadow-lg border-b border-white/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center group">
+              <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
                 ⭐ Gold Star Workflows
               </div>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#kits" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">AI Agents</a>
-              <a href="#catalog" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Agent Database</a>
-              <a href="#team" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Team</a>
-              <a href="#contact" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+              <a href="#kits" className="text-slate-600 hover:text-blue-600 font-medium transition-all duration-200 hover:scale-105 relative group">
+                AI Agents
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </a>
+              <a href="#catalog" className="text-slate-600 hover:text-blue-600 font-medium transition-all duration-200 hover:scale-105 relative group">
+                Agent Database
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </a>
+              <a href="#team" className="text-slate-600 hover:text-blue-600 font-medium transition-all duration-200 hover:scale-105 relative group">
+                Team
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              </a>
+              <a href="#contact" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl hover:shadow-xl hover:scale-105 transition-all duration-200 font-medium">
                 Get Started
               </a>
             </nav>
@@ -180,70 +206,101 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-50 to-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              We solve your business problems with
-              <span className="text-blue-600"> AI</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-              We build AI agents that do your repetitive, manual work while you focus on what really matters.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="#kits" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                Use Cases
-              </a>
-              <a href="#contact" className="bg-white text-gray-900 px-8 py-3 rounded-lg border border-gray-300 hover:border-gray-400 transition-colors font-medium">
-                Get In Touch
-              </a>
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-left">
+              <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-tight">
+                We solve your business problems with
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> AI</span>
+              </h1>
+              <p className="text-xl text-slate-600 mb-12 max-w-2xl leading-relaxed">
+                We build AI agents that do your repetitive, manual work while you focus on what really matters.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6">
+                <a href="#kits" className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-2xl hover:shadow-2xl hover:scale-105 transition-all duration-300 font-semibold text-lg inline-flex items-center">
+                  Use Cases
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a href="#contact" className="bg-white/80 backdrop-blur text-slate-900 px-8 py-4 rounded-2xl border border-white/40 hover:shadow-xl hover:scale-105 transition-all duration-300 font-semibold text-lg">
+                  Get In Touch
+                </a>
+              </div>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-80 h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl flex items-center justify-center shadow-2xl hover:rotate-3 transition-transform duration-500">
+                {aiRobotAnimation ? (
+                  <Lottie
+                    animationData={aiRobotAnimation}
+                    loop={true}
+                    className="w-64 h-64"
+                  />
+                ) : (
+                  <Bot className="w-32 h-32 text-blue-600" />
+                )}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Automation Kits */}
-      <section id="kits" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      {/* AI Agents */}
+      <section id="kits" className="py-24 bg-white relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-purple-50/30"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
               AI Agents to Eliminate Manual Work in Every Business Function
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
               We've built and applied over 2,056 AI agents for businesses like yours.
               See where we can help eliminate your manual work.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {aiAgents.map((agent, index) => {
               const IconComponent = agent.icon;
               const isCustom = agent.title === "Custom Agents";
               return (
-                <div key={index} className={`rounded-lg p-6 hover:shadow-lg transition-shadow ${
-                  isCustom ? 'bg-blue-50 border-2 border-blue-200' : 'bg-gray-50'
+                <div key={index} className={`group relative rounded-3xl p-8 transition-all duration-500 hover:scale-105 ${
+                  isCustom
+                    ? 'bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 shadow-xl hover:shadow-2xl'
+                    : 'bg-white border border-slate-200 shadow-lg hover:shadow-2xl hover:border-blue-200'
                 }`}>
-                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
-                    isCustom ? 'bg-blue-200' : 'bg-blue-100'
-                  }`}>
-                    <IconComponent className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className={`text-lg font-semibold ${
-                      isCustom ? 'text-blue-900' : 'text-gray-900'
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
+                      isCustom ? 'bg-gradient-to-br from-blue-200 to-purple-200' : 'bg-gradient-to-br from-blue-100 to-purple-100'
                     }`}>
-                      {agent.title}
-                      {isCustom && <span className="ml-2 bg-blue-600 text-white px-2 py-1 text-xs rounded-full">Custom</span>}
-                    </h3>
-                    <span className={`px-2 py-1 text-xs rounded-full whitespace-nowrap ml-2 ${
-                      isCustom ? 'bg-blue-200 text-blue-900' : 'bg-blue-100 text-blue-800'
-                    }`}>
-                      {agent.workflows}
-                    </span>
+                      {workflowAnimation && !isCustom ? (
+                        <Lottie
+                          animationData={workflowAnimation}
+                          loop={true}
+                          className="w-10 h-10"
+                        />
+                      ) : (
+                        <IconComponent className="w-8 h-8 text-blue-600" />
+                      )}
+                    </div>
+                    <div className="mb-4">
+                      <h3 className={`text-xl font-bold mb-2 ${
+                        isCustom ? 'text-blue-900' : 'text-slate-900'
+                      }`}>
+                        {agent.title}
+                        {isCustom && <span className="ml-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1 text-sm rounded-full">Custom</span>}
+                      </h3>
+                      <span className={`inline-block px-3 py-1 text-sm rounded-full font-medium ${
+                        isCustom ? 'bg-blue-200 text-blue-900' : 'bg-slate-100 text-slate-700'
+                      }`}>
+                        {agent.workflows}
+                      </span>
+                    </div>
+                    <p className="text-slate-600 leading-relaxed">
+                      {agent.description}
+                    </p>
                   </div>
-                  <p className="text-gray-600 leading-relaxed text-sm">
-                    {agent.description}
-                  </p>
                 </div>
               );
             })}
@@ -252,36 +309,40 @@ export default function HomePage() {
       </section>
 
       {/* Tech Stack Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+      <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
               Our Agents Interact With Your Existing Tech Stack
             </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Seamlessly integrate with the tools you already use
+            </p>
           </div>
 
           <div className="overflow-hidden w-full relative">
             <div className="flex animate-scroll space-x-8" style={{width: 'calc(200% + 16rem)'}}>
               {/* First set of logos */}
               {techTools.map((tool, index) => (
-                <div key={index} className="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-sm flex flex-col items-center justify-center p-3">
+                <div key={index} className="flex-shrink-0 w-36 h-20 bg-white/10 backdrop-blur rounded-2xl shadow-lg flex flex-col items-center justify-center p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">
                   <div
-                    className="w-8 h-8 mb-1"
+                    className="w-10 h-10 mb-2"
                     dangerouslySetInnerHTML={{ __html: tool.icon.svg }}
                     style={{ color: `#${tool.icon.hex}` }}
                   />
-                  <span className="text-xs font-medium text-gray-600 text-center">{tool.name}</span>
+                  <span className="text-xs font-medium text-white text-center">{tool.name}</span>
                 </div>
               ))}
               {/* Duplicate for seamless loop */}
               {techTools.map((tool, index) => (
-                <div key={`duplicate-${index}`} className="flex-shrink-0 w-32 h-16 bg-white rounded-lg shadow-sm flex flex-col items-center justify-center p-3">
+                <div key={`duplicate-${index}`} className="flex-shrink-0 w-36 h-20 bg-white/10 backdrop-blur rounded-2xl shadow-lg flex flex-col items-center justify-center p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">
                   <div
-                    className="w-8 h-8 mb-1"
+                    className="w-10 h-10 mb-2"
                     dangerouslySetInnerHTML={{ __html: tool.icon.svg }}
                     style={{ color: `#${tool.icon.hex}` }}
                   />
-                  <span className="text-xs font-medium text-gray-600 text-center">{tool.name}</span>
+                  <span className="text-xs font-medium text-white text-center">{tool.name}</span>
                 </div>
               ))}
             </div>
@@ -409,69 +470,70 @@ export default function HomePage() {
       </section>
 
       {/* Contact Form */}
-      <section id="contact" className="py-20 bg-gray-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      <section id="contact" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
               Get In Touch
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Free your team from boring, repetitive work so you can focus on actually growing your business.
             </p>
           </div>
 
-          <form className="bg-white rounded-lg shadow-sm p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+          <form className="bg-white/80 backdrop-blur rounded-3xl shadow-2xl p-10 border border-white/20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div className="group">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Name *
                 </label>
                 <input
                   type="text"
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
+                  className="w-full px-6 py-4 border border-slate-200 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 bg-white/50 backdrop-blur hover:bg-white/80"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="group">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Email *
                 </label>
                 <input
                   type="email"
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
+                  className="w-full px-6 py-4 border border-slate-200 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 bg-white/50 backdrop-blur hover:bg-white/80"
                 />
               </div>
             </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="mb-8">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Company Name *
               </label>
               <input
                 type="text"
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
+                className="w-full px-6 py-4 border border-slate-200 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 bg-white/50 backdrop-blur hover:bg-white/80"
               />
             </div>
 
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="mb-8">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Additional Details
               </label>
               <textarea
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
+                rows={5}
+                className="w-full px-6 py-4 border border-slate-200 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 bg-white/50 backdrop-blur hover:bg-white/80 resize-none"
                 placeholder="Tell us about your manual processes or what you'd like to automate..."
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-4 px-8 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center"
+              className="group w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-5 px-8 rounded-2xl font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center text-lg"
             >
               Send Message
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>
           </form>
         </div>
