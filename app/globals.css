@@ -98,3 +98,17 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #B91C1C;
 }
+
+/* Tech stack carousel animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}

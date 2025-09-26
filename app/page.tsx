@@ -44,60 +44,60 @@ export default function HomePage() {
     }
   }
 
-  // Automation kit offerings
-  const automationKits = [
+  // AI Agent offerings
+  const aiAgents = [
     {
       icon: Bot,
-      title: "Lead Generation & Qualification Kit",
+      title: "Lead Generation & Qualification",
       description: "Web scraping for prospect data, CRM integration, and automated email sequences. Generate and qualify leads while you sleep.",
-      workflows: "437 workflows"
+      workflows: "679+ agents to choose from"
     },
     {
       icon: Zap,
-      title: "Customer Support Automation Kit",
+      title: "Customer Support Automation",
       description: "Automated ticket routing, data extraction from requests, and response templates. Handle 80% of support requests automatically.",
-      workflows: "446 workflows"
+      workflows: "725+ agents to choose from"
     },
     {
       icon: Target,
-      title: "Content Marketing Engine Kit",
+      title: "Content Marketing Engine",
       description: "Content creation, social media posting, and performance tracking. Maintain consistent marketing with 90% less manual work.",
-      workflows: "183 workflows"
+      workflows: "325+ agents to choose from"
     },
     {
       icon: Bot,
-      title: "Sales Pipeline Automation Kit",
+      title: "Sales Pipeline Automation",
       description: "Lead capture, CRM updates, and follow-up sequences. Never lose a lead due to manual follow-up delays.",
-      workflows: "370 workflows"
+      workflows: "450+ agents to choose from"
     },
     {
       icon: Zap,
-      title: "Financial Operations Kit",
+      title: "Financial Operations",
       description: "Invoice processing, expense tracking, and automated reporting. Close books 5x faster with zero data entry errors.",
-      workflows: "215 workflows"
+      workflows: "280+ agents to choose from"
     },
     {
       icon: Target,
-      title: "Project Management Automation Kit",
+      title: "Project Management Automation",
       description: "Task creation, status updates, and deadline tracking. Keep projects on track without constant manual check-ins.",
-      workflows: "432 workflows"
+      workflows: "500+ agents to choose from"
     },
     {
       icon: Bot,
-      title: "E-commerce Operations Kit",
+      title: "E-commerce Operations",
       description: "Order processing, inventory tracking, and customer communication. Run your online store while focusing on growth.",
-      workflows: "359 workflows"
+      workflows: "400+ agents to choose from"
     },
     {
       icon: Zap,
-      title: "HR & Employee Onboarding Kit",
+      title: "HR & Employee Onboarding",
       description: "Document collection, system access provisioning, and training sequences. Onboard new hires in 1 day instead of 1 week.",
-      workflows: "154 workflows"
+      workflows: "225+ agents to choose from"
     },
     {
       icon: Target,
-      title: "Custom Kit",
-      description: "We build completely custom automation kits based on your specific operational needs and existing systems.",
+      title: "Custom Workflow",
+      description: "We can build a custom AI agent to automate any manual process in your business based on your specific operational needs.",
       workflows: "Built to order"
     }
   ]
@@ -116,8 +116,8 @@ export default function HomePage() {
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#kits" className="text-gray-600 hover:text-blue-600 font-medium">Automation Kits</a>
-              <a href="#catalog" className="text-gray-600 hover:text-blue-600 font-medium">Catalog</a>
+              <a href="#kits" className="text-gray-600 hover:text-blue-600 font-medium">AI Agents</a>
+              <a href="#catalog" className="text-gray-600 hover:text-blue-600 font-medium">Agent Database</a>
               <a href="#team" className="text-gray-600 hover:text-blue-600 font-medium">Team</a>
               <a href="#contact" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
                 Get Started
@@ -136,15 +136,14 @@ export default function HomePage() {
               <span className="text-blue-600"> pre-built automation kits</span>
             </h1>
             <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-              We audit your operations and build complete automation kits that eliminate
-              your most time-consuming manual processes. No AI buzzwords. Just measurable time savings.
+              We build AI agents that do your repetitive, manual work while you focus on what really matters.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <a href="#kits" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                Browse Automation Kits
+                See Work We've Automated
               </a>
               <a href="#contact" className="bg-white text-gray-900 px-8 py-3 rounded-lg border border-gray-300 hover:border-gray-400 transition-colors font-medium">
-                Get Operations Audit
+                Get In Touch
               </a>
             </div>
           </div>
@@ -156,36 +155,74 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Pre-Built Automation Kits
+              We've Built AI Agents to Eliminate Manual Work in Every Business Function
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Complete automation solutions built from 2,050+ analyzed workflows.
-              Each kit eliminates entire categories of manual work.
+              We've built and applied over 2,056 AI agents for businesses like yours.
+              See where we can help eliminate your manual work.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {automationKits.map((kit, index) => {
-              const IconComponent = kit.icon;
+            {aiAgents.map((agent, index) => {
+              const IconComponent = agent.icon;
+              const isCustom = agent.title === "Custom Workflow";
               return (
-                <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                <div key={index} className={`rounded-lg p-6 hover:shadow-lg transition-shadow ${
+                  isCustom ? 'bg-blue-50 border-2 border-blue-200' : 'bg-gray-50'
+                }`}>
+                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
+                    isCustom ? 'bg-blue-200' : 'bg-blue-100'
+                  }`}>
                     <IconComponent className="w-6 h-6 text-blue-600" />
                   </div>
                   <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {kit.title}
+                    <h3 className={`text-lg font-semibold ${
+                      isCustom ? 'text-blue-900' : 'text-gray-900'
+                    }`}>
+                      {agent.title}
+                      {isCustom && <span className="ml-2 bg-blue-600 text-white px-2 py-1 text-xs rounded-full">Custom</span>}
                     </h3>
-                    <span className="bg-blue-100 text-blue-800 px-2 py-1 text-xs rounded-full whitespace-nowrap ml-2">
-                      {kit.workflows}
+                    <span className={`px-2 py-1 text-xs rounded-full whitespace-nowrap ml-2 ${
+                      isCustom ? 'bg-blue-200 text-blue-900' : 'bg-blue-100 text-blue-800'
+                    }`}>
+                      {agent.workflows}
                     </span>
                   </div>
                   <p className="text-gray-600 leading-relaxed text-sm">
-                    {kit.description}
+                    {agent.description}
                   </p>
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack Section */}
+      <section className="py-16 bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Our Agents Interact With Your Existing Tech Stack
+            </h2>
+          </div>
+
+          <div className="overflow-hidden">
+            <div className="flex animate-scroll space-x-12">
+              {/* First set of logos */}
+              {['ActiveCampaign', 'Airtable', 'Asana', 'Calendly', 'Chargebee', 'Clickup', 'ConvertKit', 'Copper', 'Discord', 'GitHub', 'GitLab', 'Gmail', 'Google Drive', 'Google Sheets', 'HubSpot', 'Intercom', 'Jira', 'Lemlist', 'Mailchimp', 'Notion', 'OpenAI', 'Pipedrive', 'Quickbooks', 'Shopify', 'Slack', 'Trello', 'Zendesk'].map((tool, index) => (
+                <div key={index} className="flex-shrink-0 w-24 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                  <span className="text-xs font-medium text-gray-600 text-center">{tool}</span>
+                </div>
+              ))}
+              {/* Duplicate for seamless loop */}
+              {['ActiveCampaign', 'Airtable', 'Asana', 'Calendly', 'Chargebee', 'Clickup', 'ConvertKit', 'Copper', 'Discord', 'GitHub', 'GitLab', 'Gmail', 'Google Drive', 'Google Sheets', 'HubSpot', 'Intercom', 'Jira', 'Lemlist', 'Mailchimp', 'Notion', 'OpenAI', 'Pipedrive', 'Quickbooks', 'Shopify', 'Slack', 'Trello', 'Zendesk'].map((tool, index) => (
+                <div key={`duplicate-${index}`} className="flex-shrink-0 w-24 h-12 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                  <span className="text-xs font-medium text-gray-600 text-center">{tool}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -198,8 +235,8 @@ export default function HomePage() {
               Our Team
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We've analyzed 2,050+ automation workflows and built complete kits that eliminate
-              manual work. Now we help businesses deploy these proven automation systems.
+              We've built and deployed over 2,056 AI agents that eliminate
+              manual work. Now we help businesses like yours deploy these proven AI systems.
             </p>
           </div>
 
@@ -238,11 +275,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Workflow Database
+              Agent Database
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Search our database of 2,050+ automation workflows that power our kits.
-              See the building blocks we use to eliminate manual work.
+              Search our database of 2,056 AI agents we've already built.
+              See the agents we use to eliminate manual work.
             </p>
           </div>
 
@@ -252,7 +289,7 @@ export default function HomePage() {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search workflows (e.g., 'lead generation', 'data entry', 'customer support')"
+                placeholder="Search agents (e.g., 'lead generation', 'data entry', 'customer support')"
                 className="w-full pl-12 pr-24 py-4 text-lg border border-gray-300 rounded-lg bg-white focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -274,10 +311,10 @@ export default function HomePage() {
                 <div className="p-12 text-center">
                   <div className="mb-6">
                     <Search className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                    <p className="text-gray-600">Search our workflow database to see automation possibilities</p>
+                    <p className="text-gray-600">Search our agent database to see what we've already built</p>
                   </div>
                   <p className="text-sm text-gray-500">
-                    Or contact us to discuss which automation kit fits your needs
+                    Or contact us to discuss which AI agents fit your needs
                   </p>
                 </div>
               ) : isLoading ? (
@@ -301,8 +338,8 @@ export default function HomePage() {
                 </div>
               ) : (
                 <div className="p-12 text-center">
-                  <p className="text-gray-600 mb-2">No workflows found for "{searchQuery}"</p>
-                  <p className="text-sm text-gray-500">Try a different search term or contact us for a custom automation kit</p>
+                  <p className="text-gray-600 mb-2">No agents found for "{searchQuery}"</p>
+                  <p className="text-sm text-gray-500">Try a different search term or contact us for a custom AI agent</p>
                 </div>
               )}
             </div>
@@ -315,11 +352,10 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Get Your Operations Audit
+              Get In Touch
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Tell us which manual processes are eating up your team's time.
-              We'll identify which automation kit(s) will give you the biggest impact.
+              Free your team from boring, repetitive work so you can focus on actually growing your business.
             </p>
           </div>
 
@@ -411,7 +447,7 @@ export default function HomePage() {
               Gold Star Workflows
             </div>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              We build automation kits that eliminate manual work and improve operations.
+              We build AI agents that eliminate manual work and improve operations.
             </p>
             <div className="text-sm text-gray-500">
               © 2025 Gold Star Workflows
