@@ -1,15 +1,15 @@
-# The American AI Agent Company - Landing Page
+# Gold Star Workflows AI Agents - Landing Page
 
-A powerful landing page showcasing enterprise AI agents built from 2,046 analyzed workflows. Built with Next.js 14 and Tailwind CSS.
+A powerful landing page showcasing AI agents that eliminate manual work, built from 2,056 proven workflows. Built with Next.js 14 and Tailwind CSS.
 
 ## Features
 
-- **Hero Section**: Bold American industrial aesthetic with key metrics
-- **Featured Agents**: Showcase top-performing AI agents with ROI data
+- **Hero Section**: Modern professional design with key metrics
+- **Featured Agents**: Showcase AI agents that eliminate manual work
 - **Agent Catalog**: Searchable database of available AI agents
 - **Consultation Form**: Lead capture for custom agent development
 - **Responsive Design**: Optimized for all devices
-- **Industrial Aesthetic**: Classic American monopoly styling meets modern Claude branding
+- **Professional Design**: Modern business aesthetic with Gold Star branding
 
 ## Quick Start
 
@@ -85,4 +85,4 @@ ai-agent-landing/
 
 ---
 
-**Built for American competitiveness through intelligent automation.**
+**Built to eliminate manual work and improve business operations through AI agents.**

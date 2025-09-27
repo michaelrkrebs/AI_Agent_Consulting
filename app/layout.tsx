@@ -5,13 +5,13 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'The American AI Agent Company - Enterprise AI Automation',
-  description: 'We\'ve analyzed 2,046 enterprise workflows to build the definitive catalog of AI agents for American businesses. Drive competitiveness through intelligent automation.',
-  keywords: 'AI agents, business automation, enterprise AI, workflow automation, American business',
-  authors: [{ name: 'The American AI Agent Company' }],
+  title: 'Gold Star Workflows AI Agents - Enterprise AI Automation',
+  description: 'We\'ve built and deployed over 2,056 AI agents that eliminate manual work. We help businesses deploy these proven AI systems to solve real business problems.',
+  keywords: 'AI agents, business automation, enterprise AI, workflow automation, Gold Star Workflows',
+  authors: [{ name: 'Gold Star Workflows AI Agents' }],
   openGraph: {
-    title: 'The American AI Agent Company',
-    description: 'Enterprise AI agents built from 2,046 analyzed workflows',
+    title: 'Gold Star Workflows AI Agents',
+    description: 'AI agents that eliminate manual work - built from 2,056 proven workflows',
     type: 'website',
   },
 }
